@@ -11,7 +11,7 @@
     # init database
       -first create your database
       - run :
-        $ php artisan october:up     (this will create all needed table in your database with some records)
+        $ php artisan october:up     (this will create all needed table in the database set in database.php file with some records)
 
 2. virtual host
     We create two domains dev-october.com and prod-october.com
@@ -23,16 +23,16 @@
 
     Step 1 — Creating the Directory Structure
 
-    $ sudo mkdir -p /var/www/html/cms/laravel/dev-october.com/public_html/
-    $ sudo mkdir -p /var/www/html/cms/laravel/prod-october.com/public_html/
+            $ sudo mkdir -p /var/www/html/cms/laravel/dev-october.com/public_html/
+            $ sudo mkdir -p /var/www/html/cms/laravel/prod-october.com/public_html/
 
     copy october to /var/www/html/cms/laravel/dev-october.com/public_html/
-    $ cp -R october_path /var/www/html/cms/laravel/dev-october.com/public_html/
-    $ cp -R october_path /var/www/html/cms/laravel/prod-october.com/public_html/
+            $ cp -R october_path /var/www/html/cms/laravel/dev-october.com/public_html/
+            $ cp -R october_path /var/www/html/cms/laravel/prod-october.com/public_html/
 
     change access right and ownership for both domain
-    $chown -R www-data:www-data /var/www/html/cms/laravel/dev-october.com/
-    $chmode -R ugo+wrx /var/www/html/cms/laravel/dev-october.com/
+            $chown -R www-data:www-data /var/www/html/cms/laravel/dev-october.com/
+            $chmode -R ugo+wrx /var/www/html/cms/laravel/dev-october.com/
 
     Step 3 — Create New Virtual Host Files
 
@@ -48,22 +48,22 @@
 
     Step 4 — Enabling the New Virtual Host Files
 
-    $ sudo a2ensite dev-october.com.conf
-    $ sudo a2ensite prod-october.com.conf
+            $ sudo a2ensite dev-october.com.conf
+            $ sudo a2ensite prod-october.com.conf
 
-    #reload appach config
-    $ service apache2 reload
+            #reload appach config
+            $ service apache2 reload
 
-    $ service apache2 stop
-    $ service apach2 start
+            $ service apache2 stop
+            $ service apach2 start
 
     Step 5 — Setting Up Local Hosts File
 
     $ sudo vim /etc/hosts
 
     add :
-    127.0.0.1 dev-october.com
-    127.0.0.1 prod-october.com
+            127.0.0.1 dev-october.com
+            127.0.0.1 prod-october.com
 
     Step 6 — Testing Your Results
 
@@ -80,17 +80,17 @@ set your database configuration in config/database.php
 
 e.g
 
- 'mysql' => [
-            'driver'    => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'october'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', 'root'),
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-        ],
+            'mysql' => [
+                            'driver'    => 'mysql',
+                            'host' => env('DB_HOST', 'localhost'),
+                            'port' => env('DB_PORT', '3306'),
+                            'database' => env('DB_DATABASE', 'october'),
+                            'username' => env('DB_USERNAME', 'root'),
+                            'password' => env('DB_PASSWORD', 'root'),
+                            'charset'   => 'utf8',
+                            'collation' => 'utf8_unicode_ci',
+                            'prefix'    => '',
+                   ],
 
 3. environment
 
@@ -108,13 +108,14 @@ e.g
         laravel will use configuration in config/prod
     #2nd way
     - in environment.php, you can define the config path for each domain request. See the below exemple
-    'hosts' => [
+    
+            'hosts' => [
 
-            'localhost' => 'dev',
-            'dev-october.com' => 'dev',
-            'prod-october.com' => 'prod',
+                    'localhost' => 'dev',
+                    'dev-october.com' => 'dev',
+                    'prod-october.com' => 'prod',
 
-        ],
+                ],
 
     In this example, all request from 
     - localhost will load config from config/dev
